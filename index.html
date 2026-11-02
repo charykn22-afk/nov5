@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Divine Engagement Invitation | Kanukuntla Rajkoti Chary & Partner</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <!-- Google Fonts: Divine Temple Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700;900&family=Cinzel:wght@500;600;700;800&family=Great+Vibes&family=Marcellus&family=Noto+Serif+Devanagari:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --stone-dark: #120e0c;
+            --stone-panel: #1a1411;
+            --gold-primary: #d4a340;
+            --gold-light: #fbe69e;
+            --gold-glow: rgba(212, 163, 64, 0.35);
+            --diya-orange: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0d0a09 radial-gradient(circle at 50% 15%, #231812 0%, #130d0a 60%, #080605 100%);
+            color: #f7eedc;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .font-devanagari {
+            font-family: 'Noto Serif Devanagari', serif;
+        }
+
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .font-cinzel-dec {
+            font-family: 'Cinzel Decorative', serif;
+        }
+
+        .font-marcellus {
+            font-family: 'Marcellus', serif;
+        }
+
+        .font-great-vibes {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Temple Gold Metallic Text */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff3c4 0%, #e5b95c 40%, #c9932d 70%, #fbe8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stone-border {
+            border: 1px solid rgba(212, 163, 64, 0.4);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(212, 163, 64, 0.08);
+        }
+
+        /* Temple Diya Flame Animation */
+        @keyframes diyaFlicker {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(-1deg);
+                filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.8)) drop-shadow(0 0 25px rgba(239, 68, 68, 0.5));
+            }
+
+            50% {
+                transform: scale(1.08) rotate(1.5deg);
+                filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.95)) drop-shadow(0 0 35px rgba(239, 68, 68, 0.7));
+            }
+        }
+
+        .flame-glow {
+            animation: diyaFlicker 2.5s infinite ease-in-out;
+        }
+
+        /* Bell Swing on Hover & Entrance */
+        @keyframes bellRing {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            20% {
+                transform: rotate(14deg);
+            }
+
+            40% {
+                transform: rotate(-12deg);
+            }
+
+            60% {
+                transform: rotate(8deg);
+            }
+
+            80% {
+                transform: rotate(-6deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .bell-animated {
+            transform-origin: top center;
+            animation: bellRing 1.2s ease-in-out;
+        }
+
+        .bell-idle {
+            transform-origin: top center;
+            animation: bellSwingIdle 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes bellSwingIdle {
+            0% {
+                transform: rotate(-3deg);
+            }
+
+            100% {
+                transform: rotate(3deg);
+            }
+        }
+
+        /* Equalizer audio bars */
+        .eq-bar {
+            width: 3px;
+            background: #e5b95c;
+            border-radius: 2px;
+            animation: eqBounce 1.2s ease-in-out infinite alternate;
+        }
+
+        .eq-bar:nth-child(1) {
+            height: 8px;
+            animation-delay: 0.1s;
+        }
+
+        .eq-bar:nth-child(2) {
+            height: 18px;
+            animation-delay: 0.3s;
+        }
+
+        .eq-bar:nth-child(3) {
+            height: 12px;
+            animation-delay: 0.2s;
+        }
+
+        .eq-bar:nth-child(4) {
+            height: 16px;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes eqBounce {
+            0% {
+                height: 4px;
+            }
+
+            100% {
+                height: 20px;
+            }
+        }
+
+        .eq-paused .eq-bar {
+            animation-play-state: paused !important;
+            height: 4px !important;
+        }
+
+        /* Canvas Particle Layer */
+        #divineCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Carved Stone Panel Styling */
+        .carved-stone-card {
+            background: linear-gradient(165deg, rgba(32, 24, 20, 0.95) 0%, rgba(18, 14, 12, 0.98) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 185, 92, 0.35);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 163, 64, 0.15);
+        }
+
+        /* Subtle Carved Border Motif */
+        /* Custom scrollbar for wishes list */
+        #wishesList::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #wishesList::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        #wishesList::-webkit-scrollbar-thumb {
+            background: #c9932d;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="relative min-h-screen flex flex-col items-center justify-start text-amber-50">
+
+    <!-- Ambient Canvas: Floating Temple Marigold Petals & Golden Lamp Embers -->
+    <canvas id="divineCanvas"></canvas>
+
+    <!-- Background Music Audio Element -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="radheshyam.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Minimal Music Controller (Mobile-friendly) -->
+    <div id="musicPill"
+        class="fixed top-3 right-3 sm:top-5 sm:right-5 z-50 bg-[#16110e]/90 backdrop-blur-md border border-amber-500/40 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-2xl flex items-center space-x-2 transition">
+        <div id="eqBars" class="flex items-end space-x-1 h-5 eq-paused cursor-pointer" onclick="toggleMusic()">
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+            <div class="eq-bar"></div>
+        </div>
+        <div class="flex flex-col cursor-pointer" onclick="toggleMusic()">
+            <span class="text-[9px] uppercase tracking-wider text-amber-300/80 font-medium leading-tight">Melody</span>
+            <span id="musicStatusText" class="text-[11px] font-semibold text-amber-100 leading-tight max-w-[90px] sm:max-w-[130px] truncate">Radhe Shyam</span>
+        </div>
+        <button id="togglePlayBtn" onclick="toggleMusic()"
+            class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 active:scale-95 flex items-center justify-center text-xs transition">
+            ▶
+        </button>
+        <button onclick="openMelodyModal()" title="Change Melody"
+            class="bg-amber-500/25 hover:bg-amber-500/35 active:scale-95 border border-amber-400/50 text-amber-200 text-[10px] sm:text-xs font-cinzel font-bold px-2.5 py-1 rounded-full flex items-center space-x-1 transition shadow">
+            <span>🎵</span>
+            <span class="hidden sm:inline">Melodies</span>
+        </button>
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- SCREEN 1: DIVINE SANCTUM ENTRANCE (BELL & DIYA UNVEILING) -->
+    <!-- ======================================================== -->
+    <div id="entranceScreen"
+        class="w-full max-w-md min-h-[92vh] flex flex-col items-center justify-center text-center px-4 py-8 z-20 transition-all duration-800">
+
+        <!-- Sacred Devanagari Invocation -->
+        <div class="mb-4">
+            <p class="font-devanagari text-amber-400 tracking-[0.25em] text-sm md:text-base font-semibold drop-shadow">
+                ॥ ॐ श्री गणेशाय नमः ॥
+            </p>
+            <p class="font-marcellus text-xs uppercase tracking-[0.3em] text-amber-200/70 mt-1">
+                Auspicious Temple Union
+            </p>
+        </div>
+
+        <!-- Lord Ganesha Auspicious Mandala Emblem with Golden Halo -->
+        <div class="relative my-4 flex items-center justify-center">
+            <!-- Pulsating Divine Halo -->
+            <div class="absolute w-44 h-44 rounded-full bg-amber-500/15 blur-xl animate-pulse"></div>
+
+            <div
+                class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full p-1.5 bg-gradient-to-tr from-amber-600 via-yellow-400 to-amber-700 shadow-2xl stone-border">
+                <img src="ganesha_emblem.jpg" alt="Lord Ganesha Mandala"
+                    class="w-full h-full object-cover rounded-full">
+            </div>
+        </div>
+
+        <!-- Event Divine Headline -->
+        <div class="my-4 space-y-1">
+            <span class="font-great-vibes text-3xl sm:text-4xl text-amber-300/90 block">Sacred Moments & Eternal
+                Bond</span>
+            <h1 class="font-cinzel text-2xl sm:text-3xl font-black gold-gradient-text tracking-wider uppercase">
+                ENGAGEMENT CEREMONY
+            </h1>
+            <p class="font-marcellus text-xs sm:text-sm tracking-widest text-amber-100/80 uppercase pt-1">
+                Kanukuntla Rajkoti Chary & Dhenchanadula Pavani
+            </p>
+        </div>
+
+        <!-- Interactive Divine Brass Temple Bell Card -->
+        <div id="bellContainer" class="my-6 relative cursor-pointer group" onclick="enterSacredSanctum()">
+
+            <!-- Hanging Chain & Bell Graphic -->
+            <div class="flex flex-col items-center">
+                <!-- Golden Bell Chain -->
+                <div class="w-1.5 h-10 bg-gradient-to-b from-amber-600 via-yellow-400 to-amber-700 rounded-sm"></div>
+
+                <!-- Brass Bell Icon Frame with Marigold Garland -->
+                <div id="templeBell"
+                    class="bell-idle relative w-24 h-24 rounded-full bg-gradient-to-b from-[#2a1e16] to-[#120d09] border-2 border-amber-400/80 shadow-2xl flex flex-col items-center justify-center p-3 group-hover:border-amber-300 transition-all duration-300 transform group-hover:scale-105">
+
+                    <!-- Auspicious Bell SVG with Diya Glow -->
+                    <svg class="w-12 h-12 text-amber-300 drop-shadow-[0_0_12px_rgba(245,158,11,0.9)]"
+                        viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2C10.9 2 10 2.9 10 4V4.29C7.03 5.17 5 7.9 5 11.14V16L3.5 17.5V19H20.5V17.5L19 16V11.14C19 7.9 16.97 5.17 14 4.29V4C14 2.9 13.1 2 12 2ZM12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22Z" />
+                    </svg>
+
+                    <!-- Auspicious Clapper dot -->
+                    <div class="w-2 h-2 rounded-full bg-yellow-200 mt-1 shadow-[0_0_6px_#ffd700]"></div>
+                </div>
+
+                <!-- Diya Flame Under Bell -->
+                <div class="flex items-center space-x-2 mt-3 text-amber-400">
+                    <span class="text-lg flame-glow">🪔</span>
+                    <span class="text-xs font-cinzel tracking-widest text-amber-200/90 uppercase font-semibold">Touch to
+                        Ring the Bell</span>
+                    <span class="text-lg flame-glow">🪔</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Button (Mobile-first large touch target) -->
+        <button onclick="enterSacredSanctum()"
+            class="w-full max-w-xs bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 active:scale-95 text-[#1b1107] font-cinzel font-black text-xs sm:text-sm uppercase tracking-[0.2em] py-3.5 px-6 rounded-full shadow-[0_4px_25px_rgba(212,163,64,0.4)] transition-all duration-300 flex items-center justify-center space-x-2 mx-auto">
+            <span>🔔 ENTER SACRED CEREMONY</span>
+        </button>
+
+        <p class="text-[11px] text-amber-300/60 mt-3 tracking-wider">
+            ♪ Includes Radhe Shyam Temple BGM
+        </p>
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- SCREEN 2: DIVINE TEMPLE INVITATION CARD (UNVEILED)       -->
+    <!-- ======================================================== -->
+    <div id="invitationContent"
+        class="hidden opacity-0 w-full max-w-xl mx-auto px-3 sm:px-5 py-6 z-20 transition-all duration-1000">
+
+        <!-- Outer Carved Stone Temple Border Frame -->
+        <div
+            class="carved-stone-card rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-8 relative overflow-hidden text-center">
+
+            <!-- Traditional Temple Header & Sanskrit Sloka -->
+            <div class="mb-6 pt-2">
+                <p class="font-devanagari text-amber-400 tracking-[0.2em] text-xs sm:text-sm font-semibold">
+                    ॥ मङ्गलम् भगवान् विष्णुः मङ्गलम् गरुडध्वजः ॥
+                </p>
+                <p class="font-devanagari text-amber-200/80 text-[11px] sm:text-xs tracking-wider mt-0.5">
+                    ॥ मङ्गलम् पुण्डरीकाक्षः मङ्गलाय तनो हरिः ॥
+                </p>
+
+                <!-- Auspicious divider -->
+                <div class="flex items-center justify-center space-x-3 my-3">
+                    <div class="h-[1px] w-12 sm:w-20 bg-gradient-to-r from-transparent to-amber-400/80"></div>
+                    <span class="text-amber-400 text-xs">ॐ ⚜ ॐ</span>
+                    <div class="h-[1px] w-12 sm:w-20 bg-gradient-to-l from-transparent to-amber-400/80"></div>
+                </div>
+
+                <!-- Lord Ganesha Mini Medallion -->
+                <div
+                    class="inline-flex items-center space-x-3 bg-black/40 border border-amber-500/30 rounded-full px-4 py-1.5 shadow-inner">
+                    <img src="ganesha_emblem.jpg" alt="Ganesha"
+                        class="w-8 h-8 rounded-full border border-amber-400/80 object-cover">
+                    <span class="font-cinzel text-xs uppercase tracking-widest text-amber-200 font-bold">Divine
+                        Blessings</span>
+                </div>
+            </div>
+
+            <!-- ANCIENT TEMPLE STONE SCULPTURES SECTION (NEW FEATURE!) -->
+            <div class="relative rounded-xl overflow-hidden my-5 border border-amber-500/40 shadow-2xl group">
+                <!-- Temple Stone Art Image -->
+                <div class="w-full h-52 sm:h-64 relative bg-[#0d0907]">
+                    <img src="temple_stone_art.jpg" alt="Ancient Temple Stone Carvings"
+                        class="w-full h-full object-cover brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-700">
+
+                    <!-- Ambient Diya Gradient Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#16100d] via-transparent to-black/30"></div>
+
+                    <!-- Stone Sculpture Badge Overlay -->
+                    <div class="absolute bottom-3 inset-x-3 flex items-center justify-between text-left">
+                        <div class="bg-black/75 backdrop-blur-md border border-amber-500/40 rounded-lg px-3 py-1.5">
+                            <span
+                                class="text-[9px] font-cinzel uppercase tracking-[0.2em] text-amber-400 block">Historic
+                                Heritage</span>
+                            <span class="text-xs font-marcellus text-amber-100 font-bold">Divine Temple Carvings &
+                                Eternal Love</span>
+                        </div>
+                        <span class="text-xl flame-glow">🪔</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Invitation Title & Proclamation -->
+            <div class="my-6">
+                <span class="font-great-vibes text-3xl sm:text-4xl text-amber-300 block">With the divine blessings of
+                    Almighty</span>
+                <h2
+                    class="font-cinzel-dec text-2xl sm:text-3xl md:text-4xl font-bold gold-gradient-text tracking-wider uppercase mt-1">
+                    Engagement Ceremony
+                </h2>
+                <p class="font-marcellus text-xs sm:text-sm text-amber-100/90 max-w-md mx-auto mt-2 leading-relaxed">
+                    We seek your esteemed presence and heartfelt blessings as two souls unite in timeless love and
+                    sacred tradition.
+                </p>
+            </div>
+
+            <!-- COUPLE PRESENTATION: TEMPLE STONE TABLET -->
+            <div class="bg-[#120d0a]/90 border border-amber-500/35 rounded-2xl p-5 sm:p-7 my-5 shadow-2xl relative">
+
+                <!-- Groom -->
+                <div class="mb-4">
+                    <span
+                        class="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-amber-400/90 font-cinzel font-semibold">Groom</span>
+                    <h3 class="font-cinzel text-xl sm:text-3xl font-bold gold-gradient-text tracking-wide mt-1">
+                        Kanukuntla Rajkoti Chary
+                    </h3>
+                    <p class="text-xs text-amber-200/70 font-light mt-0.5">Son of Kanukuntla Lakshmi Venkatrajam</p>
+                </div>
+
+                <!-- Sacred Union Divider with Rings -->
+                <div class="flex items-center justify-center my-3">
+                    <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-amber-500/40 to-transparent"></div>
+                    <div
+                        class="mx-3 flex items-center space-x-2 bg-amber-500/10 border border-amber-400/30 px-3 py-1 rounded-full">
+                        <span class="text-sm">💍</span>
+                        <span class="font-great-vibes text-xl text-amber-300">&</span>
+                        <span class="text-sm">🪔</span>
+                    </div>
+                    <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-amber-500/40 to-transparent"></div>
+                </div>
+
+                <!-- Bride -->
+                <div class="mt-4">
+                    <span
+                        class="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-amber-400/90 font-cinzel font-semibold">Bride</span>
+                    <div class="flex items-center justify-center space-x-2">
+                        <h3 id="brideNameDisplay"
+                            class="font-cinzel text-xl sm:text-3xl font-bold gold-gradient-text tracking-wide mt-1">
+                            Pavani
+                        </h3>
+                        <button onclick="promptBrideName()" title="Edit Bride's Name"
+                            class="text-amber-400/70 hover:text-amber-300 text-xs p-1">
+                            ✏️
+                        </button>
+                    </div>
+                    <p class="text-xs text-amber-200/70 font-light mt-0.5">Daughter of Denchanadhula Mohan Padma</p>
+                </div>
+            </div>
+
+            <!-- SACRED EVENT DETAILS: 3 STONE TILES (Fully Responsive for Mobile) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-6 text-center">
+
+                <!-- Date -->
+                <div
+                    class="bg-[#150f0c] p-4 rounded-xl border border-amber-500/30 shadow-md flex flex-col items-center">
+                    <span class="text-xl mb-1">📅</span>
+                    <span class="text-[10px] font-cinzel uppercase tracking-widest text-amber-400 font-bold">Auspicious
+                        Date</span>
+                    <h4 class="font-cinzel text-lg font-bold text-amber-100 mt-1">Thursday</h4>
+                    <p class="text-xs text-amber-300 font-medium">Nov 05, 2026</p>
+                </div>
+
+                <!-- Sumuhurtham -->
+                <div
+                    class="bg-[#150f0c] p-4 rounded-xl border border-amber-500/30 shadow-md flex flex-col items-center">
+                    <span class="text-xl mb-1">⏰</span>
+                    <span
+                        class="text-[10px] font-cinzel uppercase tracking-widest text-amber-400 font-bold">Sumuhurtham</span>
+                    <h4 class="font-cinzel text-lg font-bold text-amber-100 mt-1">11:00 AM</h4>
+                    <p class="text-[11px] text-amber-200/70">Auspicious Muhurtham</p>
+                </div>
+
+                <!-- Venue (Shubham Gardens) -->
+                <div
+                    class="bg-[#150f0c] p-4 rounded-xl border border-amber-500/30 shadow-md flex flex-col items-center">
+                    <span class="text-xl mb-1">🏛️</span>
+                    <span class="text-[10px] font-cinzel uppercase tracking-widest text-amber-400 font-bold">Sacred
+                        Venue</span>
+                    <h4 class="font-cinzel text-lg font-bold text-amber-100 mt-1">Shubham Gardens</h4>
+                    <p class="text-[11px] text-amber-200/70">Kashibugga, Warangal</p>
+                    <a href="https://maps.app.goo.gl/XDid99drjaKJUAWt5" target="_blank" class="mt-2 text-[10px] text-amber-400 hover:text-amber-300 underline font-semibold flex items-center space-x-1">
+                        <span>📍 Open Map Link</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Detailed Venue & Map Location Card -->
+            <div class="bg-[#120d0a]/85 border border-amber-500/30 rounded-xl p-4 my-4 text-left flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg">
+                <div class="flex items-start space-x-3">
+                    <span class="text-2xl mt-0.5">📍</span>
+                    <div>
+                        <span class="text-[10px] font-cinzel uppercase tracking-[0.2em] text-amber-400 font-bold block">Venue Location</span>
+                        <h4 class="font-cinzel text-sm sm:text-base font-bold text-amber-100 mt-0.5">Shubham Gardens</h4>
+                        <p class="text-xs text-amber-200/75 leading-relaxed font-light mt-0.5">
+                            XJMC+WM3, 100 Feet Rd, opp. Shubham garden’s, Kashibugga, Enumamula, Warangal, Telangana 506002
+                        </p>
+                    </div>
+                </div>
+                <a href="https://maps.app.goo.gl/XDid99drjaKJUAWt5" target="_blank" class="w-full sm:w-auto shrink-0 bg-amber-500/20 hover:bg-amber-500/30 active:scale-95 border border-amber-400/50 text-amber-200 text-xs font-cinzel font-semibold px-4 py-2.5 rounded-lg transition text-center flex items-center justify-center space-x-1.5 shadow">
+                    <span>🗺️ Open in Google Maps</span>
+                </a>
+            </div>
+
+            <!-- ACTION BUTTONS: MOBILE TOUCH OPTIMIZED -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 my-6 text-xs font-cinzel">
+                <button onclick="addToCalendar()"
+                    class="bg-amber-500/15 hover:bg-amber-500/25 active:scale-95 border border-amber-400/40 text-amber-200 py-2.5 px-2 rounded-xl transition flex items-center justify-center space-x-1">
+                    <span>🗓️</span> <span>Calendar</span>
+                </button>
+                <a href="https://maps.app.goo.gl/XDid99drjaKJUAWt5" target="_blank"
+                    class="bg-amber-500/15 hover:bg-amber-500/25 active:scale-95 border border-amber-400/40 text-amber-200 py-2.5 px-2 rounded-xl transition flex items-center justify-center space-x-1">
+                    <span>🗺️</span> <span>Venue Map</span>
+                </a>
+                <button onclick="shareOnWhatsApp()"
+                    class="bg-emerald-600/20 hover:bg-emerald-600/30 active:scale-95 border border-emerald-400/40 text-emerald-200 py-2.5 px-2 rounded-xl transition flex items-center justify-center space-x-1">
+                    <span>💬</span> <span>WhatsApp</span>
+                </button>
+                <button onclick="copyInviteLink()"
+                    class="bg-amber-500/15 hover:bg-amber-500/25 active:scale-95 border border-amber-400/40 text-amber-200 py-2.5 px-2 rounded-xl transition flex items-center justify-center space-x-1">
+                    <span>📋</span> <span>Copy Link</span>
+                </button>
+            </div>
+
+            <!-- SACRED COUNTDOWN TIMER (Non-wrapping 4-column layout on mobile) -->
+            <div
+                class="my-6 bg-gradient-to-b from-[#18120e] to-[#0f0b08] border border-amber-500/35 rounded-2xl p-4 sm:p-5 shadow-xl">
+                <span
+                    class="font-cinzel text-[11px] sm:text-xs uppercase tracking-[0.25em] text-amber-400 font-bold block mb-3">
+                    ⏳ Countdown to the Auspicious Muhurtham
+                </span>
+
+                <div class="grid grid-cols-4 gap-2 max-w-sm mx-auto">
+                    <div class="bg-black/60 border border-amber-500/30 rounded-lg p-2 text-center">
+                        <span id="days" class="text-xl sm:text-2xl font-cinzel font-bold text-amber-200 block">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-amber-400/80">Days</span>
+                    </div>
+                    <div class="bg-black/60 border border-amber-500/30 rounded-lg p-2 text-center">
+                        <span id="hours"
+                            class="text-xl sm:text-2xl font-cinzel font-bold text-amber-200 block">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-amber-400/80">Hours</span>
+                    </div>
+                    <div class="bg-black/60 border border-amber-500/30 rounded-lg p-2 text-center">
+                        <span id="minutes"
+                            class="text-xl sm:text-2xl font-cinzel font-bold text-amber-200 block">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-amber-400/80">Mins</span>
+                    </div>
+                    <div class="bg-black/60 border border-amber-500/30 rounded-lg p-2 text-center">
+                        <span id="seconds"
+                            class="text-xl sm:text-2xl font-cinzel font-bold text-amber-200 block">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-amber-400/80">Secs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WARM FAMILY BLESSINGS & RSVP -->
+            <div class="mt-8 border-t border-amber-500/25 pt-6">
+                <span class="font-great-vibes text-3xl sm:text-4xl text-amber-300 block mb-1">We seek your gracious
+                    presence and blessings!</span>
+                <p class="text-xs text-amber-200/70 font-light mb-5">Kanukuntla Family & Loved Ones</p>
+
+                <button onclick="openBlessingModal()"
+                    class="w-full sm:w-auto bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-700 hover:from-amber-500 hover:to-amber-600 active:scale-95 text-[#1a1106] font-cinzel font-black text-xs uppercase tracking-widest px-8 py-3.5 rounded-full shadow-lg transition">
+                    ✨ SEND BLESSINGS & RSVP
+                </button>
+            </div>
+
+            <!-- GUEST BLESSINGS WALL -->
+            <div class="mt-8 text-left border-t border-amber-500/20 pt-5">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="font-cinzel text-xs font-bold text-amber-300 uppercase tracking-widest">
+                        💖 Sacred Blessings
+                    </span>
+                    <button onclick="openBlessingModal()" class="text-[11px] text-amber-400 hover:underline">
+                        + Add Blessing
+                    </button>
+                </div>
+                <div id="wishesList" class="space-y-2 max-h-52 overflow-y-auto pr-1">
+                    <!-- Dynamic wishes populated by JS -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-6 mb-8 text-amber-400/50 text-[11px] font-cinzel tracking-wider">
+            Kanukuntla Rajkoti Chary & Dhenchanadula Pavani • November 05, 2026
+        </div>
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- MODAL: BLESSINGS & RSVP                                  -->
+    <!-- ======================================================== -->
+    <div id="blessingModal"
+        class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="carved-stone-card max-w-sm w-full rounded-2xl p-6 relative border border-amber-500/50">
+            <button onclick="closeBlessingModal()"
+                class="absolute top-4 right-4 text-amber-400 hover:text-white text-lg">
+                ✕
+            </button>
+
+            <h3 class="font-cinzel text-lg font-bold gold-gradient-text text-center uppercase tracking-wider">
+                Send Your Blessings
+            </h3>
+            <p class="text-xs text-amber-200/70 text-center mb-5">Share love and prayers for the couple</p>
+
+            <form id="blessingForm" onsubmit="submitBlessing(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-cinzel uppercase tracking-wider text-amber-300 mb-1">Your
+                        Name</label>
+                    <input type="text" id="guestName" required placeholder="e.g. Ramesh & Family"
+                        class="w-full bg-black/60 border border-amber-500/40 rounded-lg px-3 py-2 text-xs text-amber-100 placeholder-amber-200/30 focus:outline-none focus:border-amber-400">
+                </div>
+                <div>
+                    <label
+                        class="block text-[11px] font-cinzel uppercase tracking-wider text-amber-300 mb-1">Attendance</label>
+                    <select id="guestAttendance"
+                        class="w-full bg-[#18110d] border border-amber-500/40 rounded-lg px-3 py-2 text-xs text-amber-100 focus:outline-none focus:border-amber-400">
+                        <option value="Joyfully Attending">Joyfully Attending 🎉</option>
+                        <option value="Sending Blessings from Afar">Sending Blessings from Afar 💐</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-cinzel uppercase tracking-wider text-amber-300 mb-1">Your
+                        Message</label>
+                    <textarea id="guestMessage" rows="3" required
+                        placeholder="Wishing Rajkoti and Pavani eternal happiness, divine blessings, and prosperity..."
+                        class="w-full bg-black/60 border border-amber-500/40 rounded-lg px-3 py-2 text-xs text-amber-100 placeholder-amber-200/30 focus:outline-none focus:border-amber-400"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-amber-950 font-cinzel font-bold text-xs uppercase tracking-widest py-3 rounded-lg shadow-md transition">
+                    Submit Blessing
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL: SACRED MELODY JUKEBOX (SELECT & SWITCH TRACKS)    -->
+    <!-- ======================================================== -->
+    <div id="melodyModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="carved-stone-card max-w-md w-full rounded-2xl p-5 sm:p-6 relative border border-amber-500/50 shadow-2xl">
+            <button onclick="closeMelodyModal()" class="absolute top-4 right-4 text-amber-400 hover:text-white text-lg">
+                ✕
+            </button>
+            
+            <div class="text-center mb-4">
+                <span class="text-2xl">🎶</span>
+                <h3 class="font-cinzel text-lg font-bold gold-gradient-text uppercase tracking-wider mt-1">
+                    Select Sacred Melody
+                </h3>
+                <p class="text-xs text-amber-200/70">Choose an auspicious temple melody or pick your favorite song</p>
+            </div>
+
+            <!-- List of Melodies -->
+            <div class="space-y-2.5 max-h-72 overflow-y-auto pr-1">
+                <!-- Track 1: Radhe Shyam -->
+                <div id="track-radheshyam" onclick="selectMelody('radheshyam', 'Radhe Shyam Theme', 'radheshyam.mp3')" class="track-item flex items-center justify-between p-3 rounded-xl border border-amber-400 bg-[#1e1510] hover:border-amber-300 cursor-pointer transition active:scale-[0.98]">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xl">🪈</span>
+                        <div>
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-amber-100">Radhe Shyam Theme</h4>
+                            <p class="text-[10px] text-amber-300/70 font-light">Soulful Romantic Flute & Strings</p>
+                        </div>
+                    </div>
+                    <span id="badge-radheshyam" class="text-[10px] font-cinzel font-semibold bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-400/30">Active</span>
+                </div>
+
+                <!-- Track 2: Divine Krishna Bansuri (Live Synthesized) -->
+                <div id="track-bansuri" onclick="selectMelody('bansuri', 'Divine Krishna Bansuri')" class="track-item flex items-center justify-between p-3 rounded-xl border border-amber-500/30 bg-[#16100d] hover:border-amber-400 cursor-pointer transition active:scale-[0.98]">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xl">🪔</span>
+                        <div>
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-amber-100">Divine Krishna Bansuri</h4>
+                            <p class="text-[10px] text-amber-300/70 font-light">Pure Temple Flute & Sacred Tanpura Drone</p>
+                        </div>
+                    </div>
+                    <span id="badge-bansuri" class="hidden text-[10px] font-cinzel font-semibold bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-400/30">Active</span>
+                </div>
+
+                <!-- Track 3: Sacred Temple Shehnai (Live Synthesized) -->
+                <div id="track-shehnai" onclick="selectMelody('shehnai', 'Sacred Temple Shehnai')" class="track-item flex items-center justify-between p-3 rounded-xl border border-amber-500/30 bg-[#16100d] hover:border-amber-400 cursor-pointer transition active:scale-[0.98]">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xl">🎷</span>
+                        <div>
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-amber-100">Sacred Temple Shehnai</h4>
+                            <p class="text-[10px] text-amber-300/70 font-light">Auspicious Mangala Vaadyam Wedding Dhun</p>
+                        </div>
+                    </div>
+                    <span id="badge-shehnai" class="hidden text-[10px] font-cinzel font-semibold bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-400/30">Active</span>
+                </div>
+
+                <!-- Track 4: Pick From Device -->
+                <label class="track-item flex items-center justify-between p-3 rounded-xl border border-dashed border-amber-400/50 bg-[#1a120c] hover:bg-amber-500/10 cursor-pointer transition active:scale-[0.98]">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-xl">📁</span>
+                        <div>
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-amber-300">Choose Any Song (.mp3)</h4>
+                            <p class="text-[10px] text-amber-200/60 font-light">Pick Sita Ramam or any music from your device</p>
+                        </div>
+                    </div>
+                    <span class="text-xs text-amber-400 font-bold bg-amber-500/20 px-2.5 py-1 rounded-lg border border-amber-400/30">Browse</span>
+                    <input type="file" id="customAudioFile" accept="audio/*" class="hidden" onchange="loadCustomAudioFile(event)">
+                </label>
+            </div>
+
+            <!-- Custom Local File Quick Input -->
+            <div class="mt-4 pt-3 border-t border-amber-500/25">
+                <span class="text-[10px] font-cinzel uppercase tracking-wider text-amber-300/80 block mb-1.5">Have another MP3 file in project folder?</span>
+                <div class="flex space-x-2">
+                    <input type="text" id="customFileNameInput" placeholder="e.g. sitaramam.mp3" class="flex-1 bg-black/60 border border-amber-500/40 rounded-lg px-2.5 py-1.5 text-xs text-amber-100 placeholder-amber-200/30 focus:outline-none focus:border-amber-400">
+                    <button onclick="loadCustomFileName()" class="bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-200 text-xs font-cinzel font-semibold px-3 py-1.5 rounded-lg active:scale-95 transition">
+                        Play
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+        class="fixed bottom-5 z-50 bg-amber-500 text-amber-950 px-5 py-2 rounded-full font-cinzel text-xs font-bold uppercase tracking-wider shadow-2xl opacity-0 pointer-events-none transition-all duration-300 transform translate-y-3">
+        Action Successful!
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- SCRIPT LOGIC                                             -->
+    <!-- ======================================================== -->
+    <script>
+        const entranceScreen = document.getElementById('entranceScreen');
+        const invitationContent = document.getElementById('invitationContent');
+        const bgMusic = document.getElementById('bgMusic');
+        const musicStatusText = document.getElementById('musicStatusText');
+        const togglePlayBtn = document.getElementById('togglePlayBtn');
+        const eqBars = document.getElementById('eqBars');
+        const templeBell = document.getElementById('templeBell');
+
+        let isPlaying = false;
+        let isOpened = false;
+        let currentTrackType = 'radheshyam';
+        let currentTrackTitle = 'Radhe Shyam';
+        let synthCtx = null;
+        let synthNodes = [];
+        let synthInterval = null;
+
+        // ========================================================
+        // SACRED TEMPLE BELL CHIME SYNTHESIS (Web Audio API)
+        // ========================================================
+        function playTempleBellSound() {
+            try {
+                const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+                const audioCtx = new AudioCtxClass();
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                const now = audioCtx.currentTime;
+                // Authentic resonant Indian temple brass bell (Ghanta) overtone partials
+                const bellHarmonics = [
+                    { ratio: 1.0, gain: 0.8, decay: 2.8 },   // Fundamental brass strike
+                    { ratio: 1.51, gain: 0.55, decay: 2.3 }, // Harmonic 5th
+                    { ratio: 2.01, gain: 0.45, decay: 1.9 }, // Octave
+                    { ratio: 2.76, gain: 0.32, decay: 1.5 }, // Tierce
+                    { ratio: 4.07, gain: 0.22, decay: 1.1 }, // Upper partial
+                    { ratio: 5.43, gain: 0.14, decay: 0.7 }  // Metallic shimmer
+                ];
+
+                const baseFreq = 587.33; // D5 pitch, traditional bronze bell tuning
+
+                bellHarmonics.forEach(h => {
+                    const osc = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(baseFreq * h.ratio, now);
+
+                    // Rapid hammer strike attack followed by rich reverberant decay
+                    gainNode.gain.setValueAtTime(0.001, now);
+                    gainNode.gain.linearRampToValueAtTime(h.gain, now + 0.012);
+                    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + h.decay);
+
+                    osc.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + h.decay);
+                });
+            } catch (err) {
+                console.log("AudioContext bell chime:", err);
+            }
+        }
+
+        // ========================================================
+        // LIVE INDIAN CLASSICAL SYNTHESIZERS (Bansuri & Shehnai)
+        // ========================================================
+        function stopSynthesizer() {
+            if (synthInterval) {
+                clearInterval(synthInterval);
+                synthInterval = null;
+            }
+            if (synthNodes && synthNodes.length) {
+                synthNodes.forEach(node => {
+                    try {
+                        if (node.stop) node.stop();
+                        if (node.disconnect) node.disconnect();
+                    } catch (e) {}
+                });
+                synthNodes = [];
+            }
+            if (synthCtx && synthCtx.state !== 'closed') {
+                try { synthCtx.close(); } catch (e) {}
+                synthCtx = null;
+            }
+        }
+
+        // 1. Divine Krishna Bansuri (Bamboo Flute in Raga Mohanam + Tanpura Drone)
+        function startBansuriSynthesizer() {
+            stopSynthesizer();
+            const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+            synthCtx = new AudioCtxClass();
+            if (synthCtx.state === 'suspended') synthCtx.resume();
+
+            const masterGain = synthCtx.createGain();
+            masterGain.gain.setValueAtTime(0.25, synthCtx.currentTime);
+            masterGain.connect(synthCtx.destination);
+            synthNodes.push(masterGain);
+
+            // Sacred Tanpura Drone (D3 146.8Hz, A3 220Hz, D4 293.7Hz)
+            const tanpuraPitches = [146.83, 220.0, 293.66, 146.83 * 2];
+            tanpuraPitches.forEach((freq, idx) => {
+                const osc = synthCtx.createOscillator();
+                const gain = synthCtx.createGain();
+                const filter = synthCtx.createBiquadFilter();
+
+                osc.type = idx % 2 === 0 ? 'sawtooth' : 'triangle';
+                osc.frequency.setValueAtTime(freq, synthCtx.currentTime);
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(450, synthCtx.currentTime);
+
+                // Subtle slow chorusing drone
+                gain.gain.setValueAtTime(0.04 / (idx + 1), synthCtx.currentTime);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(masterGain);
+
+                osc.start();
+                synthNodes.push(osc, gain, filter);
+            });
+
+            // Bansuri Flute Melody Notes (Raga Mohanam / Bhupali: D4, E4, F#4, A4, B4, D5, E5)
+            const mohanamNotes = [293.66, 329.63, 369.99, 440.00, 493.88, 587.33, 493.88, 440.00, 369.99, 329.63];
+            let noteIndex = 0;
+
+            function playFlutePhrase() {
+                if (!synthCtx || synthCtx.state === 'closed') return;
+                const noteFreq = mohanamNotes[noteIndex % mohanamNotes.length];
+                noteIndex++;
+
+                const now = synthCtx.currentTime;
+                const osc = synthCtx.createOscillator();
+                const gain = synthCtx.createGain();
+                const filter = synthCtx.createBiquadFilter();
+                const vibrato = synthCtx.createOscillator();
+                const vibratoGain = synthCtx.createGain();
+
+                // Bamboo Flute Tone: Warm sine/triangle with soft breath modulation
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(noteFreq, now);
+
+                // Expressive Vibrato
+                vibrato.frequency.setValueAtTime(5.2, now);
+                vibratoGain.gain.setValueAtTime(3.8, now);
+                vibrato.connect(osc.frequency);
+                vibrato.start(now);
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(1200, now);
+
+                // Soft flute breath attack & release
+                const noteDuration = 1.6;
+                gain.gain.setValueAtTime(0.001, now);
+                gain.gain.linearRampToValueAtTime(0.35, now + 0.25);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + noteDuration);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(masterGain);
+
+                osc.start(now);
+                osc.stop(now + noteDuration);
+                vibrato.stop(now + noteDuration);
+            }
+
+            playFlutePhrase();
+            synthInterval = setInterval(playFlutePhrase, 1700);
+        }
+
+        // 2. Sacred Temple Shehnai (Auspicious Mangala Dhun)
+        function startShehnaiSynthesizer() {
+            stopSynthesizer();
+            const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+            synthCtx = new AudioCtxClass();
+            if (synthCtx.state === 'suspended') synthCtx.resume();
+
+            const masterGain = synthCtx.createGain();
+            masterGain.gain.setValueAtTime(0.2, synthCtx.currentTime);
+            masterGain.connect(synthCtx.destination);
+            synthNodes.push(masterGain);
+
+            // Ceremonial Drone
+            const droneOsc = synthCtx.createOscillator();
+            const droneGain = synthCtx.createGain();
+            droneOsc.type = 'sawtooth';
+            droneOsc.frequency.setValueAtTime(220.0, synthCtx.currentTime);
+            droneGain.gain.setValueAtTime(0.03, synthCtx.currentTime);
+            const droneFilter = synthCtx.createBiquadFilter();
+            droneFilter.type = 'lowpass';
+            droneFilter.frequency.setValueAtTime(500, synthCtx.currentTime);
+            droneOsc.connect(droneFilter);
+            droneFilter.connect(droneGain);
+            droneGain.connect(masterGain);
+            droneOsc.start();
+            synthNodes.push(droneOsc, droneGain, droneFilter);
+
+            // Auspicious Shehnai Phrasing
+            const shehnaiNotes = [440.0, 493.88, 554.37, 587.33, 659.25, 587.33, 554.37, 440.0];
+            let noteIdx = 0;
+
+            function playShehnaiNote() {
+                if (!synthCtx || synthCtx.state === 'closed') return;
+                const freq = shehnaiNotes[noteIdx % shehnaiNotes.length];
+                noteIdx++;
+
+                const now = synthCtx.currentTime;
+                const osc = synthCtx.createOscillator();
+                const gain = synthCtx.createGain();
+                const bandpass = synthCtx.createBiquadFilter();
+
+                // Double reed nasal character
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(freq, now);
+
+                bandpass.type = 'bandpass';
+                bandpass.frequency.setValueAtTime(1400, now);
+                bandpass.Q.setValueAtTime(3.5, now);
+
+                const dur = 1.3;
+                gain.gain.setValueAtTime(0.001, now);
+                gain.gain.linearRampToValueAtTime(0.3, now + 0.1);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+                osc.connect(bandpass);
+                bandpass.connect(gain);
+                gain.connect(masterGain);
+
+                osc.start(now);
+                osc.stop(now + dur);
+            }
+
+            playShehnaiNote();
+            synthInterval = setInterval(playShehnaiNote, 1400);
+        }
+
+        // Enter Sacred Sanctum Action
+        function enterSacredSanctum() {
+            if (isOpened) return;
+            isOpened = true;
+
+            // 1. Play authentic temple bell sound immediately upon click
+            playTempleBellSound();
+
+            // 2. Ring the Temple Bell visual animation
+            templeBell.classList.remove('bell-idle');
+            templeBell.classList.add('bell-animated');
+
+            // 3. Sacred Marigold & Gold Sparkle Burst
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 75,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#ffd700', '#ff9800', '#f59e0b', '#e65100', '#ffffff']
+                });
+            }
+
+            // 4. Smooth Transition from Portal to Sanctum Invitation
+            setTimeout(() => {
+                entranceScreen.style.opacity = '0';
+                entranceScreen.style.transform = 'translateY(-20px) scale(0.96)';
+
+                setTimeout(() => {
+                    entranceScreen.classList.add('hidden');
+                    invitationContent.classList.remove('hidden');
+
+                    setTimeout(() => {
+                        invitationContent.style.opacity = '1';
+                    }, 50);
+
+                    // Start active melody
+                    startMusic();
+
+                    // Additional gentle petal shower
+                    if (typeof confetti === 'function') {
+                        setTimeout(() => {
+                            confetti({
+                                particleCount: 80,
+                                spread: 100,
+                                origin: { y: 0.3 },
+                                colors: ['#ffd700', '#ffa726', '#ffcc80', '#ffffff']
+                            });
+                        }, 400);
+                    }
+                }, 600);
+            }, 800);
+        }
+
+        // ========================================================
+        // MELODY JUKEBOX CONTROLLER (SWITCH & PLAY MELODIES)
+        // ========================================================
+        function openMelodyModal() {
+            document.getElementById('melodyModal').classList.remove('hidden');
+        }
+
+        function closeMelodyModal() {
+            document.getElementById('melodyModal').classList.add('hidden');
+        }
+
+        function updateTrackBadges(activeType) {
+            ['radheshyam', 'bansuri', 'shehnai'].forEach(type => {
+                const badge = document.getElementById(`badge-${type}`);
+                const container = document.getElementById(`track-${type}`);
+                if (badge && container) {
+                    if (type === activeType) {
+                        badge.classList.remove('hidden');
+                        container.classList.add('border-amber-400', 'bg-[#1e1510]');
+                        container.classList.remove('border-amber-500/30', 'bg-[#16100d]');
+                    } else {
+                        badge.classList.add('hidden');
+                        container.classList.remove('border-amber-400', 'bg-[#1e1510]');
+                        container.classList.add('border-amber-500/30', 'bg-[#16100d]');
+                    }
+                }
+            });
+        }
+
+        function selectMelody(type, title, src) {
+            currentTrackType = type;
+            currentTrackTitle = title;
+            updateTrackBadges(type);
+            closeMelodyModal();
+
+            if (type === 'radheshyam') {
+                stopSynthesizer();
+                bgMusic.src = src || 'radheshyam.mp3';
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    updateMusicUI(true);
+                    showToast(`Playing ${title}`);
+                }).catch(e => console.log(e));
+            } else if (type === 'bansuri') {
+                bgMusic.pause();
+                startBansuriSynthesizer();
+                isPlaying = true;
+                updateMusicUI(true);
+                showToast(`Playing ${title}`);
+            } else if (type === 'shehnai') {
+                bgMusic.pause();
+                startShehnaiSynthesizer();
+                isPlaying = true;
+                updateMusicUI(true);
+                showToast(`Playing ${title}`);
+            }
+        }
+
+        // Custom File Upload
+        function loadCustomAudioFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            stopSynthesizer();
+            const objectUrl = URL.createObjectURL(file);
+            bgMusic.src = objectUrl;
+
+            const name = file.name.replace(/\.[^/.]+$/, "");
+            currentTrackType = 'custom';
+            currentTrackTitle = name;
+            updateTrackBadges('custom');
+            closeMelodyModal();
+
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                updateMusicUI(true);
+                showToast(`Playing: ${name}`);
+            }).catch(e => console.log(e));
+        }
+
+        // Custom File Name
+        function loadCustomFileName() {
+            const input = document.getElementById('customFileNameInput').value.trim();
+            if (!input) return;
+
+            stopSynthesizer();
+            bgMusic.src = input;
+            currentTrackType = 'custom';
+            currentTrackTitle = input.replace(/\.[^/.]+$/, "");
+            updateTrackBadges('custom');
+            closeMelodyModal();
+
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                updateMusicUI(true);
+                showToast(`Playing: ${input}`);
+            }).catch(err => {
+                showToast(`Could not load "${input}"`);
+            });
+        }
+
+        // Music Controls (Play / Pause toggle)
+        function startMusic() {
+            if (currentTrackType === 'bansuri') {
+                startBansuriSynthesizer();
+                isPlaying = true;
+                updateMusicUI(true);
+            } else if (currentTrackType === 'shehnai') {
+                startShehnaiSynthesizer();
+                isPlaying = true;
+                updateMusicUI(true);
+            } else {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    updateMusicUI(true);
+                }).catch(err => {
+                    console.log("Audio play caught:", err);
+                    updateMusicUI(false);
+                });
+            }
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                if (currentTrackType === 'bansuri' || currentTrackType === 'shehnai') {
+                    stopSynthesizer();
+                } else {
+                    bgMusic.pause();
+                }
+                isPlaying = false;
+                updateMusicUI(false);
+            } else {
+                startMusic();
+            }
+        }
+
+        function updateMusicUI(active) {
+            musicStatusText.textContent = currentTrackTitle;
+            if (active) {
+                togglePlayBtn.innerHTML = "⏸";
+                eqBars.classList.remove('eq-paused');
+            } else {
+                togglePlayBtn.innerHTML = "▶";
+                eqBars.classList.add('eq-paused');
+            }
+        }
+
+        // Countdown Timer Logic (Nov 05, 2026 11:00 AM)
+        const targetDate = new Date("November 5, 2026 11:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById('days').textContent = "00";
+                document.getElementById('hours').textContent = "00";
+                document.getElementById('minutes').textContent = "00";
+                document.getElementById('seconds').textContent = "00";
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Customise Bride's Name Prompt
+        function promptBrideName() {
+            const current = document.getElementById('brideNameDisplay').textContent.trim();
+            const newName = prompt("Enter the Bride / Partner's Name:", current);
+            if (newName && newName.trim().length > 0) {
+                document.getElementById('brideNameDisplay').textContent = newName.trim();
+                localStorage.setItem('rajkoti_bride_name', newName.trim());
+                showToast("Bride's name updated!");
+            }
+        }
+
+        // Restore saved bride name
+        const savedBrideName = localStorage.getItem('rajkoti_bride_name');
+        if (savedBrideName) {
+            document.getElementById('brideNameDisplay').textContent = savedBrideName;
+        }
+
+        // Add to Calendar .ics
+        function addToCalendar() {
+            const brideName = document.getElementById('brideNameDisplay').textContent.trim() || 'Dhenchanadula Pavani';
+            const icsContent =
+                `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rajkoti Engagement Invitation//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+SUMMARY:Kanukuntla Rajkoti Chary & ${brideName} Engagement Ceremony
+DESCRIPTION:Auspicious Divine Engagement Ceremony of Kanukuntla Rajkoti Chary & ${brideName} at Shubham Gardens, Warangal.\\nMap: https://maps.app.goo.gl/XDid99drjaKJUAWt5
+LOCATION:Shubham Gardens, 100 Feet Rd, opp. Shubham gardens, Kashibugga, Enumamula, Warangal, Telangana 506002
+DTSTART:20261105T053000Z
+DTEND:20261105T113000Z
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', 'Rajkoti_Engagement_Invitation.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("Calendar Event downloaded!");
+        }
+
+        // Share on WhatsApp
+        function shareOnWhatsApp() {
+            const brideName = document.getElementById('brideNameDisplay').textContent.trim() || 'Dhenchanadula Pavani';
+            const venueAddress = "Shubham Gardens, XJMC+WM3, 100 Feet Rd, opp. Shubham garden’s, Kashibugga, Enumamula, Warangal, Telangana 506002";
+            const mapUrl = "https://maps.app.goo.gl/XDid99drjaKJUAWt5";
+
+            const message = 
+`॥ ॐ श्री गणेशाय नमः ॥
+
+✨ *Auspicious Engagement Invitation* ✨
+
+With divine blessings, we cordially invite you to celebrate the sacred Engagement Ceremony of
+💍 *Kanukuntla Rajkoti Chary* & *${brideName}*
+
+📅 *Date:* Thursday, 05th November 2026
+⏰ *Sumuhurtham:* 11:00 AM Onwards
+🏛️ *Venue:* Shubham Gardens
+📍 *Address:* ${venueAddress}
+🗺️ *Location Map:* ${mapUrl}
+
+🎶 *View Our Sacred Musical Invitation:*
+${window.location.href}
+
+We eagerly seek your gracious presence & blessings! 🙏`;
+
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // Copy Link
+        function copyInviteLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showToast("Invitation Link Copied!");
+            }).catch(() => {
+                showToast("Link: " + window.location.href);
+            });
+        }
+
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            toast.textContent = text;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(12px)';
+            }, 3000);
+        }
+
+        // ==============================================
+        // BLESSINGS & GUESTBOOK SYSTEM
+        // ==============================================
+        const defaultWishes = [
+            { name: "Suresh & Sumalatha Chary", status: "Joyfully Attending", message: "May Lord Ganesha and Lord Shiva shower eternal harmony and joy upon Rajkoti & Pavani!" },
+            { name: "Vikram & Family", status: "Joyfully Attending", message: "Hearty congratulations on your engagement! Looking forward to celebrating on November 5th at Shubham Gardens, Warangal!" },
+            { name: "Anitha & Rajesh", status: "Sending Blessings", message: "Divine blessings to the beautiful couple for a glorious lifetime together." }
+        ];
+
+        function getStoredWishes() {
+            const stored = localStorage.getItem('rajkoti_blessings');
+            return stored ? JSON.parse(stored) : defaultWishes;
+        }
+
+        function renderWishes() {
+            const wishes = getStoredWishes();
+            const list = document.getElementById('wishesList');
+            list.innerHTML = '';
+
+            wishes.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-[#140e0b] border border-amber-500/20 rounded-lg p-2.5 text-xs';
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-cinzel font-semibold text-amber-200">${escapeHtml(item.name)}</span>
+                        <span class="text-[9px] text-amber-400/80 bg-amber-500/10 px-1.5 py-0.5 rounded">${escapeHtml(item.status)}</span>
+                    </div>
+                    <p class="text-amber-100/80 font-light italic">"${escapeHtml(item.message)}"</p>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function openBlessingModal() {
+            document.getElementById('blessingModal').classList.remove('hidden');
+        }
+
+        function closeBlessingModal() {
+            document.getElementById('blessingModal').classList.add('hidden');
+        }
+
+        function submitBlessing(e) {
+            e.preventDefault();
+            const name = document.getElementById('guestName').value.trim();
+            const status = document.getElementById('guestAttendance').value;
+            const message = document.getElementById('guestMessage').value.trim();
+
+            if (!name || !message) return;
+
+            const wishes = getStoredWishes();
+            wishes.unshift({ name, status, message });
+            localStorage.setItem('rajkoti_blessings', JSON.stringify(wishes));
+
+            renderWishes();
+            closeBlessingModal();
+            document.getElementById('blessingForm').reset();
+            showToast("Blessing submitted with love!");
+
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        renderWishes();
+
+        // ========================================================
+        // CANVAS: AMBIENT FLOATING MARIGOLD PETALS & DIYA EMBERS
+        // ========================================================
+        const canvas = document.getElementById('divineCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        const particles = [];
+        const petalCount = 14;
+        const emberCount = 28;
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Diya Golden Ember (Floating upward like sacred sanctum incense/embers)
+        class Ember {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * width;
+                this.y = height + Math.random() * 20;
+                this.size = Math.random() * 2 + 0.8;
+                this.alpha = Math.random() * 0.7 + 0.3;
+                this.speedY = -(Math.random() * 0.8 + 0.3);
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.fade = Math.random() * 0.015 + 0.005;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.alpha += this.fade;
+                if (this.alpha > 0.85 || this.alpha < 0.2) this.fade = -this.fade;
+                if (this.y < -10) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.fillStyle = `rgba(250, 185, 60, ${this.alpha})`;
+                ctx.shadowColor = '#f59e0b';
+                ctx.shadowBlur = 6;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Auspicious Marigold Petal (Drifting downward gently)
+        class MarigoldPetal {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * width;
+                this.y = -20 - Math.random() * 40;
+                this.size = Math.random() * 9 + 8;
+                this.speedY = Math.random() * 1.0 + 0.5;
+                this.speedX = Math.random() * 0.8 - 0.4;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotSpeed = (Math.random() - 0.5) * 0.03;
+                this.sway = Math.random() * 2;
+                this.swaySpeed = Math.random() * 0.02 + 0.01;
+                // Marigold shades: saffron orange, deep saffron, golden yellow
+                const colors = [
+                    'rgba(245, 158, 11, 0.8)',
+                    'rgba(234, 88, 12, 0.8)',
+                    'rgba(251, 191, 36, 0.8)'
+                ];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.sway) * 0.7 + this.speedX;
+                this.sway += this.swaySpeed;
+                this.rotation += this.rotSpeed;
+
+                if (this.y > height + 20) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size / 2, this.size, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < emberCount; i++) particles.push(new Ember());
+        for (let i = 0; i < petalCount; i++) particles.push(new MarigoldPetal());
+
+        function animateDivineCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateDivineCanvas);
+        }
+        animateDivineCanvas();
+    </script>
+</body>
+
+</html>
