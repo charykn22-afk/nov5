@@ -271,7 +271,8 @@
 
     <!-- Floating Minimal Music Controller (Exclusively baja01.mp3) -->
     <div id="musicPill"
-        class="fixed top-3 right-3 sm:top-5 sm:right-5 z-50 bg-[#16110e]/95 backdrop-blur-md border border-amber-500/40 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-2xl flex items-center space-x-2 transition cursor-pointer select-none" onclick="toggleMusic()">
+        class="fixed top-3 right-3 sm:top-5 sm:right-5 z-50 bg-[#16110e]/95 backdrop-blur-md border border-amber-500/40 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-2xl flex items-center space-x-2 transition cursor-pointer select-none"
+        onclick="toggleMusic()">
         <div id="eqBars" class="flex items-end space-x-1 h-5 eq-paused">
             <div class="eq-bar"></div>
             <div class="eq-bar"></div>
@@ -280,7 +281,9 @@
         </div>
         <div class="flex flex-col">
             <span class="text-[9px] uppercase tracking-wider text-amber-300/80 font-medium leading-tight">Melody</span>
-            <span id="musicStatusText" class="text-[11px] font-semibold text-amber-100 leading-tight max-w-[95px] sm:max-w-[130px] truncate">Baja Melody</span>
+            <span id="musicStatusText"
+                class="text-[11px] font-semibold text-amber-100 leading-tight max-w-[95px] sm:max-w-[130px] truncate">Baja
+                Melody</span>
         </div>
         <button id="togglePlayBtn"
             class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 active:scale-95 flex items-center justify-center text-xs transition ml-1">
@@ -296,10 +299,12 @@
         class="w-full max-w-md min-h-[92vh] flex flex-col items-center justify-center text-center px-4 py-8 z-20 transition-all duration-800">
 
         <!-- Outer Carved Stone Temple Border Frame -->
-        <div class="carved-stone-card w-full rounded-2xl sm:rounded-3xl p-6 sm:p-8 relative border border-amber-500/40 shadow-2xl">
+        <div
+            class="carved-stone-card w-full rounded-2xl sm:rounded-3xl p-6 sm:p-8 relative border border-amber-500/40 shadow-2xl">
             <!-- Sacred Devanagari Invocation -->
             <div class="mb-3">
-                <p class="font-devanagari text-amber-400 tracking-[0.25em] text-sm md:text-base font-semibold drop-shadow">
+                <p
+                    class="font-devanagari text-amber-400 tracking-[0.25em] text-sm md:text-base font-semibold drop-shadow">
                     ॥ ॐ श्री गणेशाय नमः ॥
                 </p>
                 <p class="font-marcellus text-xs uppercase tracking-[0.3em] text-amber-200/70 mt-1">
@@ -321,7 +326,8 @@
 
             <!-- Event Divine Headline -->
             <div class="my-3 space-y-1">
-                <span class="font-great-vibes text-3xl sm:text-4xl text-amber-300/90 block">Sacred Moments & Eternal Bond</span>
+                <span class="font-great-vibes text-3xl sm:text-4xl text-amber-300/90 block">Sacred Moments & Eternal
+                    Bond</span>
                 <h1 class="font-cinzel text-xl sm:text-2xl font-black gold-gradient-text tracking-wider uppercase">
                     ENGAGEMENT CEREMONY
                 </h1>
@@ -355,7 +361,9 @@
                     <!-- Diya Flame Under Bell -->
                     <div class="flex items-center space-x-2 mt-2 text-amber-400">
                         <span class="text-base flame-glow">🪔</span>
-                        <span class="text-xs font-cinzel tracking-widest text-amber-200/90 uppercase font-semibold">Touch to Ring the Bell</span>
+                        <span
+                            class="text-xs font-cinzel tracking-widest text-amber-200/90 uppercase font-semibold">Touch
+                            to Ring the Bell</span>
                         <span class="text-base flame-glow">🪔</span>
                     </div>
                 </div>
@@ -456,7 +464,7 @@
                     <span
                         class="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-amber-400/90 font-cinzel font-semibold">Groom</span>
                     <h3 class="font-cinzel text-xl sm:text-3xl font-bold gold-gradient-text tracking-wide mt-1">
-                     Rajkoti Chary
+                        Rajkoti Chary
                     </h3>
                     <p class="text-xs text-amber-200/70 font-light mt-0.5">Son of Kanukuntla Lakshmi Venkatrajam</p>
                 </div>
@@ -477,16 +485,10 @@
                 <div class="mt-4">
                     <span
                         class="text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-amber-400/90 font-cinzel font-semibold">Bride</span>
-                    <div class="flex items-center justify-center space-x-2">
-                        <h3 id="brideNameDisplay"
-                            class="font-cinzel text-xl sm:text-3xl font-bold gold-gradient-text tracking-wide mt-1">
-                             Pavani
-                        </h3>
-                        <button onclick="promptBrideName()" title="Edit Bride's Name"
-                            class="text-amber-400/70 hover:text-amber-300 text-xs p-1">
-                            ✏️
-                        </button>
-                    </div>
+                    <h3 id="brideNameDisplay"
+                        class="font-cinzel text-xl sm:text-3xl font-bold gold-gradient-text tracking-wide mt-1">
+                        Pavani
+                    </h3>
                     <p class="text-xs text-amber-200/70 font-light mt-0.5">Daughter of Denchanadhula Mohan Padma</p>
                 </div>
             </div>
@@ -522,7 +524,8 @@
                         Venue</span>
                     <h4 class="font-cinzel text-lg font-bold text-amber-100 mt-1">Shubham Gardens</h4>
                     <p class="text-[11px] text-amber-200/70">Kashibugga, Warangal</p>
-                    <a href="https://maps.app.goo.gl/XDid99drjaKJUAWt5" target="_blank" class="mt-2 text-[10px] text-amber-400 hover:text-amber-300 underline font-semibold flex items-center space-x-1">
+                    <a href="https://maps.app.goo.gl/XDid99drjaKJUAWt5" target="_blank"
+                        class="mt-2 text-[10px] text-amber-400 hover:text-amber-300 underline font-semibold flex items-center space-x-1">
                         <span>📍 Open Map Link</span>
                     </a>
                 </div>
@@ -626,7 +629,8 @@
         </div>
 
         <!-- Footer -->
-        <div id="footerText" class="text-center mt-6 mb-8 text-amber-900/70 text-[11px] font-cinzel tracking-wider font-semibold transition-colors duration-500">
+        <div id="footerText"
+            class="text-center mt-6 mb-8 text-amber-900/70 text-[11px] font-cinzel tracking-wider font-semibold transition-colors duration-500">
             Kanukuntla Rajkoti Chary & Dhenchanadula Pavani • November 05, 2026
         </div>
     </div>
@@ -637,7 +641,8 @@
     <!-- ======================================================== -->
     <div id="calendarModal"
         class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="carved-stone-card max-w-sm w-full rounded-2xl p-6 relative border border-amber-500/50 shadow-2xl text-center">
+        <div
+            class="carved-stone-card max-w-sm w-full rounded-2xl p-6 relative border border-amber-500/50 shadow-2xl text-center">
             <button onclick="closeCalendarModal()"
                 class="absolute top-4 right-4 text-amber-400 hover:text-white text-lg">
                 ✕
@@ -945,22 +950,6 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Customise Bride's Name Prompt
-        function promptBrideName() {
-            const current = document.getElementById('brideNameDisplay').textContent.trim();
-            const newName = prompt("Enter the Bride / Partner's Name:", current);
-            if (newName && newName.trim().length > 0) {
-                document.getElementById('brideNameDisplay').textContent = newName.trim();
-                localStorage.setItem('rajkoti_bride_name', newName.trim());
-                showToast("Bride's name updated!");
-            }
-        }
-
-        // Restore saved bride name
-        const savedBrideName = localStorage.getItem('rajkoti_bride_name');
-        if (savedBrideName) {
-            document.getElementById('brideNameDisplay').textContent = savedBrideName;
-        }
 
         // ========================================================
         // CALENDAR CONTROLLER: GOOGLE CALENDAR & APPLE/OUTLOOK (.ICS)
@@ -978,13 +967,13 @@
                 `We seek your esteemed presence and heartfelt blessings!`
             );
             const location = encodeURIComponent(`Shubham Gardens, 100 Feet Rd, opp. Shubham gardens, Kashibugga, Enumamula, Warangal, Telangana 506002`);
-            
+
             // 11:00 AM IST (05:30 UTC) to 5:00 PM IST (11:30 UTC)
             const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261105T053000Z/20261105T113000Z&details=${details}&location=${location}`;
-            
+
             const gLink = document.getElementById('googleCalLink');
             if (gLink) gLink.href = googleCalUrl;
-            
+
             document.getElementById('calendarModal').classList.remove('hidden');
         }
 
@@ -995,7 +984,7 @@
         function downloadIcsFile() {
             const brideName = document.getElementById('brideNameDisplay').textContent.trim() || 'Pavani';
             const nowIso = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-            
+
             // RFC 5545 strictly requires CRLF (\r\n) line endings and UID/DTSTAMP
             const icsLines = [
                 'BEGIN:VCALENDAR',
@@ -1037,8 +1026,8 @@
             const venueAddress = "Shubham Gardens, XJMC+WM3, 100 Feet Rd, opp. Shubham garden’s, Kashibugga, Enumamula, Warangal, Telangana 506002";
             const mapUrl = "https://maps.app.goo.gl/XDid99drjaKJUAWt5";
 
-            const message = 
-`॥ ॐ श्री गणेशाय नमः ॥
+            const message =
+                `॥ ॐ श्री गणेशाय नमः ॥
 
 ✨ *Auspicious Engagement Invitation* ✨
 
